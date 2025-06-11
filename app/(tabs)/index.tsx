@@ -1,75 +1,56 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native'; // Importe 'Image'
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// Importe sua logo. Certifique-se de que o caminho está correto.
+// Exemplo: se sua logo está em 'assets/images/minha-logo.png'
+const logo = require('../../assets/images/Logo.png'); // Ajuste o caminho conforme onde você salvou a logo
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* Adicionando a logo */}
+      <Image source={logo} style={styles.logo} resizeMode="contain" />
+
+      <Text style={styles.title}>Bem-vindo ao Estoque Fácil!</Text>
+      <Text style={styles.message}>
+        Organize suas tarefas de forma simples e eficiente.
+      </Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#F5FCFF', // Uma cor de fundo suave
+    padding: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: 200, // Largura da logo (ajuste conforme necessário)
+    height: 200, // Altura da logo (ajuste para manter a proporção ou use 'auto')
+    marginBottom: 30, // Espaçamento abaixo da logo
+    // backgroundColor: '#EEE', // Apenas para debug, para ver o espaço da logo
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+    textAlign: 'center',
+  },
+  message: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 20,
+    textAlign: 'center',
+    lineHeight: 25,
+  },
+  smallText: {
+    fontSize: 14,
+    color: '#999',
+    textAlign: 'center',
+    marginTop: 15,
   },
 });
